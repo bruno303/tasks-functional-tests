@@ -14,7 +14,7 @@ public class TasksTest {
 	
 	private WebDriver acessarAplicacao() {
 		WebDriver webDriver = new WebDriver();
-		webDriver.getWebDriver().navigate().to("http://localhost:8001/tasks");
+		webDriver.getWebDriver().navigate().to("http://192.168.0.17:8001/tasks");
 		webDriver.getWebDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		return webDriver;

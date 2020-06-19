@@ -2,8 +2,11 @@ package br.ce.wcaquino.tasks.webdriver;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -17,7 +20,13 @@ public class WebDriver implements Closeable {
 
 	public org.openqa.selenium.WebDriver getWebDriver() {
 		if (webDriver == null) {
-			webDriver = new ChromeDriver();
+//			webDriver = new ChromeDriver();
+			try {
+				DesiredCapabilities capabilities= DesiredCapabilities.chrome();
+				webDriver= new RemoteWebDriver(new URL("http://172.18.0.1:4444/wd/hub"), capabilities);
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return webDriver;
